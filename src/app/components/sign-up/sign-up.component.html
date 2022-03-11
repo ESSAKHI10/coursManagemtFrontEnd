@@ -1,0 +1,49 @@
+<p>sign-up works!</p>
+<div class="row">
+    <div class="col-md-4">
+      <h1>Sign up</h1>
+      <hr><br>
+      <form  (ngSubmit)="signUp()" [formGroup]="userRegistrationForm"  >
+
+        <div   class="form-group">
+          <label for="username">Username</label>
+          <input
+          formControlName="username"
+            name="username"
+            type="username"
+            required
+            class="form-control"
+            id="username"
+            placeholder="enter a username">
+          </div>
+
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email"   [class.is-invalid] = "userRegistrationForm.get('email')?.invalid && userRegistrationForm.get('email')?.touched"  class="form-control" formControlName="email"  />
+            <div *ngIf="(userRegistrationForm.get('email')?.invalid && userRegistrationForm.get('email')?.touched) || userRegistrationForm.get('email')?.dirty">
+              <small class="text-danger" *ngIf="userRegistrationForm.get('email')?.errors?.required">Email address is required</small>
+              <small class="text-danger" *ngIf="userRegistrationForm.get('email')?.errors?.email">Email address is invalid</small>
+            </div>
+          </div>
+     
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+            formControlName="password"
+            name="password"
+            type="password"
+            required
+            class="form-control"
+            id="password"
+            placeholder="enter a password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      
+      </form>
+      <p>
+        <span>Already have an account?&nbsp;</span>
+         
+      </p>
+    </div>
+  </div>
